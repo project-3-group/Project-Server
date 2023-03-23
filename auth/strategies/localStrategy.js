@@ -12,8 +12,6 @@ const strategy = new LocalStrategy({ usernameField: "email" }, async (email, pas
 
     if (isPassCorrect === false) return done(null, false, { message: "Incorrect password" });
 
-    const { password: _, ...userObj } = user;
-
     done(null, user);
   } catch (error) {
     done(error);

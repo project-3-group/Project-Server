@@ -25,7 +25,13 @@ const addUser = async (user) => {
   const validUser = await userDto.validate(user, { abortEarly: false });
 
   const hashedPass = await bcrypt.hash(user.password, 10);
-  const newUser = { ...validUser, password: hashedPass };
+  const newUser = {
+    id: users.length,
+    first_name: validUser.first_name,
+    last_name: validUser.last_name,
+    email: validUser.email,
+    password: hashedPass,
+  };
 
   users.push(newUser);
 };

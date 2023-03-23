@@ -12,7 +12,9 @@ passport.deserializeUser(async function (id, done) {
   try {
     const user = await getUserById(id);
     if (user === null) done(null, false);
-    done(null, user);
+
+    const { password: _, ...userObj } = user;
+    done(null, userObj);
   } catch (error) {
     done(error);
   }
