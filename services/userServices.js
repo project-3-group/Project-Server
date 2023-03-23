@@ -1,7 +1,33 @@
+const yup = require("yup");
+const bcrypt = require("bcrypt");
+
 const users = [];
 
-const addUser = (user) => {
-  users.push(user);
+// signup user data validation
+let userDto = yup.object({
+  first_name: yup.string().required(),
+  last_name: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup
+    .string()
+    .required("Please Enter your password")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    ),
+  passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Please confirm your password"),
+});
+
+const addUser = async (user) => {
+  const validUser = await userDto.validate(user, { abortEarly: false });
+
+  const hashedPass = await bcrypt.hash(user.password, 10);
+  const newUser = { ...validUser, password: hashedPass };
+
+  users.push(newUser);
 };
 
 const getAllUser = () => users;

@@ -11,9 +11,8 @@ route.get("/", (req, res) => {
 
 route.post("/signup", async (req, res, next) => {
   try {
-    const hashedPass = await bcrypt.hash(req.body.password, 10);
-    const user = { id: req.body.id, email: req.body.email, password: hashedPass };
-    addUser(user);
+    const user = req.body;
+    await addUser(user);
     res.status(201).send();
   } catch (error) {
     next(error);
