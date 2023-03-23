@@ -1,6 +1,6 @@
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
-const { getUserByEmail } = require("../services/userServices");
+const { getUserByEmail } = require("../../services/userServices");
 
 const strategy = new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
   try {
@@ -11,6 +11,8 @@ const strategy = new LocalStrategy({ usernameField: "email" }, async (email, pas
     const isPassCorrect = await bcrypt.compare(password, user.password);
 
     if (isPassCorrect === false) return done(null, false, { message: "Incorrect password" });
+
+    const { password: _, ...userObj } = user;
 
     done(null, user);
   } catch (error) {

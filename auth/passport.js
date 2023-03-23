@@ -1,5 +1,5 @@
 const passport = require("passport");
-const strategy = require("./localStrategy");
+const strategy = require("./strategies/localStrategy");
 const { getUserById } = require("../services/userServices");
 
 passport.use(strategy);
