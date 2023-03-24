@@ -1,6 +1,4 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-const passport = require("passport");
 const localAuthMiddleware = require("./middleware/localAuthMiddleware");
 
 const route = express.Router();
