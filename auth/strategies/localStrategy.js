@@ -4,7 +4,7 @@ const { getUserByEmail } = require("../../services/userServices");
 
 const strategy = new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
   try {
-    const user = getUserByEmail(email);
+    const user = await getUserByEmail(email);
 
     if (user === null) return done(null, false, { message: "Incorrect username" });
 

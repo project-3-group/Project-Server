@@ -1,5 +1,5 @@
 const localGuard = (req, res, next) => {
-  if (!req.user) res.status(401).send({ message: "Not Authorized" });
+  if (!req.user) return res.status(401).send({ message: "Not Authorized" });
 
   next();
 };
