@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS facts (
   id SERIAL PRIMARY KEY,
   fact TEXT NOT NULL,
   country VARCHAR(255),
-  author VARCHAR(255)
+  author INTEGER REFERENCES users(id)
 );
 
 DROP TABLE IF EXISTS questions;
@@ -21,5 +21,5 @@ CREATE TABLE IF NOT EXISTS questions (
   id SERIAL PRIMARY KEY,
   question TEXT NOT NULL,
   answer VARCHAR(255),
-  author VARCHAR(255)
+  author INTEGER REFERENCES users(id)
 );
