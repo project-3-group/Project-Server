@@ -1,0 +1,25 @@
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  highest_score INTEGER
+);
+
+DROP TABLE IF EXISTS facts;
+CREATE TABLE IF NOT EXISTS facts (
+  id SERIAL PRIMARY KEY,
+  fact TEXT NOT NULL,
+  country VARCHAR(255),
+  author VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS questions;
+CREATE TABLE IF NOT EXISTS questions (
+  id SERIAL PRIMARY KEY,
+  question TEXT NOT NULL,
+  answer VARCHAR(255),
+  author VARCHAR(255)
+);
