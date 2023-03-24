@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const session = require("express-session");
 const { ValidationError } = require("yup");
@@ -7,10 +8,9 @@ const userRoute = require("./controllers/userControllers");
 
 const server = express();
 
-// TODO: create the secret inside .env file
 server.use(
   session({
-    secret: "keyboard cat",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
