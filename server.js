@@ -1,13 +1,15 @@
 require('dotenv').config();
-const express = require("express");
+const express = require('express')
 const session = require("express-session");
 const { ValidationError } = require("yup");
 
 const { myPassport, authRoute } = require("./auth");
 const userRoute = require("./controllers/userControllers");
+const apiRoute = require('./controllers/api/apiGet')
 
 const server = express();
 
+// middleware
 server.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -19,6 +21,10 @@ server.use(myPassport.initialize());
 server.use(myPassport.session());
 server.use(express.json());
 
+
+// routes
+//http://localhost:3000
+server.use('/',apiRoute)
 server.use("/auth", authRoute);
 server.use("/users", userRoute);
 
@@ -33,4 +39,5 @@ server.use((err, req, res, next) => {
   res.status(500).send("server error");
 });
 
+// start the server
 server.listen(3000, () => console.log("start server"));
