@@ -10,6 +10,10 @@ const { myPassport, authRoute } = require("./auth");
 const userRoute = require("./controllers/userControllers");
 const apiRoute = require('./controllers/api/apiGet')
 
+const crudRoute =require ('./controllers/countryController/countryController')
+const server = express();
+
+
 
 
 
@@ -58,8 +62,8 @@ server.use(express.json());
 server.use('/',apiRoute)
 server.use("/auth", authRoute);
 server.use("/users", userRoute);
-server.post('/addFact',authenticate, addFact);
-server.delete('/deleteFact/:id',authenticate, deleteFact);
+server.post('/addFact',localGuard, crudRoute);
+server.delete('/deleteFact/:id',localGuard, crudRoute);
 
 
 

@@ -3,13 +3,14 @@ const express = require('express');
 const cors = require('cors');
 const server = express();
 const crudRoute = express.Router();
+const { localGuard } = require("../../auth");
 
 
 server.use(cors());
 server.use(express.json());
 //Routes
-server.post('/addFact',authenticate, addFact);
-server.delete('/deleteFact/:id',authenticate, deleteFact);
+server.post('/addFact',localGuard, addFact);
+server.delete('/deleteFact/:id',localGuard, deleteFact);
 
 
 //functions
