@@ -1,16 +1,13 @@
 'use strict';
 const express = require('express');
-const cors = require('cors');
-const server = express();
-const crudRoute = express.Router();
 const { localGuard } = require("../../auth");
+const client = require('../../db/dbConfig')
 
+const crudRoute = express.Router();
 
-server.use(cors());
-server.use(express.json());
 //Routes
-server.post('/addFact',localGuard, addFact);
-server.delete('/deleteFact/:id',localGuard, deleteFact);
+crudRoute.post('/addFact',localGuard, addFact);
+crudRoute.delete('/deleteFact/:id',localGuard, deleteFact);
 
 
 //functions
@@ -42,4 +39,4 @@ function deleteFact(req, res) {
             errorHandler(err, req, res);
         })}
 
-        module.exports = crudRoute;
+module.exports = crudRoute;

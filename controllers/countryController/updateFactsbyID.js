@@ -1,11 +1,10 @@
 `use strict `
 
 const express = require('express');
-const route = express();
-const pg = require('pg');
-const client = require('../db/dbConfig');
-route.use(express.json());
+const client = require('../../db/dbConfig');
 const {localGuard} = require('../../auth');
+
+const route = express();
 
 route.put('/getFactsbyID/:id', localGuard, updatebyID);
 
