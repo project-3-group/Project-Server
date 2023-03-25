@@ -6,7 +6,7 @@ const client = require('./db/dbConfig')
 const { myPassport, authRoute } = require("./auth");
 const userRoute = require("./controllers/userControllers");
 const apiRoute = require('./controllers/api/apiGet')
-
+const crudRoute =require ('./controllers/countryController/countryController')
 const server = express();
 
 // middleware
@@ -27,8 +27,8 @@ server.use(express.json());
 server.use('/',apiRoute)
 server.use("/auth", authRoute);
 server.use("/users", userRoute);
-server.post('/addFact',authenticate, addFact);
-server.delete('/deleteFact/:id',authenticate, deleteFact);
+server.post('/addFact',authenticate, crudRoute);
+server.delete('/deleteFact/:id',authenticate, crudRoute);
 
 // error handling
 server.use((req, res) => res.status(404).send({ message: "route not found" }));
