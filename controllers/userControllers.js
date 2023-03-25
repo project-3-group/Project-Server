@@ -5,12 +5,15 @@ const { localGuard } = require("../auth");
 
 const route = express.Router();
 
+route.get('/',(req,res) => {
+  res.send('hello from the user get route')});
 route.post("/signup", async (req, res, next) => {
     try {
         const user = req.body;
         await addUser(user);
         res.status(201).send();
-    } catch (err) {
+    } 
+    catch (err) {
         handleValidationError(err, req, res);
         next(err);
     }
