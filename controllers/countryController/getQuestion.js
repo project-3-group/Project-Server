@@ -3,20 +3,17 @@
 const express = require("express")
 const route = express.Router();
 const pg = require('pg');
-const client = new pg.Client(process.env.DATABASE_URL);
+const client=require('../db/dbConfig');
 route.use(express.json());
-route.get('/getQuestion/:id', getQuestionHandler);
+route.get('/getQuestion', getQuestionHandler);
 
 
 function getQuestionHandler(req, res) {
-    const id = req.params.id;
-    console.log(id);
-    const sql = ` SELECT * from questions WHERE id=$1;`;
-    const values = [id];
-    console.log(sql);
-    console.log(id);
 
-    client.query(sql,values)
+    const sql = `SELECT * from questions ORDER BY RANDOM() LIMIT 1;`;
+    console.log(sql);
+
+    client.query(sql)
     .then((result)=>{
         res.send(result.rows)
     })

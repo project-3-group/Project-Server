@@ -3,14 +3,14 @@
 const express = require("express")
 const route = express.Router();
 const pg = require('pg');
-const client=require('../../server')
-route.get('/getFacts/:country', getFactsHandler);
+const client=require('../db/dbConfig');
+route.get('/getFactsbyCountry/:country', getFactsHandler);
 
 
 function getFactsHandler(req, res) {
     const country = req.params.country;
     console.log(country);
-    const sql =`SELECT fact,author FROM facts WHERE country=$1;`;
+    const sql =`SELECT * FROM facts WHERE country=$1;`;
     const values = [country];
     console.log(sql);
 
@@ -21,7 +21,7 @@ function getFactsHandler(req, res) {
 
     })
     .catch((error) => {
-        console.log('error')
+        res.send('error')
     })
 }
 module.exports = route;

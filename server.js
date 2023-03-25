@@ -4,7 +4,9 @@
 const express = require('express');
 const server = express();
 const userRoute = require('./controllers/userControllers');
-const getFacts = require('./controllers/countryController/getFacts');
+const getFactsbyCountry = require('./controllers/countryController/getFactsbycountry');
+const getFactsbyUser = require('./controllers/countryController/getFactsbyUser');
+const getFactsbyID = require('./controllers/countryController/getFactsbyID');
 const getQuestion = require('./controllers/countryController/getQuestion');
 const cors = require('cors');
 server.use(cors());
@@ -13,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 server.use(express.json());
 require('dotenv').config();
 server.use(express.json());
-const client = new pg.Client(process.env.DATABASE_URL);
+const client = require('./controllers/db/dbConfig');
 
 
 
@@ -21,7 +23,9 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 
 server.use('/users',userRoute);
-server.use('/', getFacts);
+server.use('/', getFactsbyCountry);
+server.use('/', getFactsbyUser);
+server.use('/', getFactsbyID);
 server.use('/', getQuestion);
 server.get('*', notFoundHandler);
 function notFoundHandler(req, res) {
