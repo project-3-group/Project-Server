@@ -27,6 +27,8 @@ server.use(express.json());
 server.use('/',apiRoute)
 server.use("/auth", authRoute);
 server.use("/users", userRoute);
+server.post('/addFact',authenticate, addFact);
+server.delete('/deleteFact/:id',authenticate, deleteFact);
 
 // error handling
 server.use((req, res) => res.status(404).send({ message: "route not found" }));
