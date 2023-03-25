@@ -5,23 +5,15 @@ const route = express();
 const pg = require('pg');
 const client = require('../db/dbConfig');
 route.use(express.json());
+const {localGuard} = require('../../auth');
 
-route.put('/getFactsbyID/:id', authenticateUser, updatebyID);
+route.put('/getFactsbyID/:id', localGuard, updatebyID);
 
-function authenticateUser(req, res, next) {
-    const Header = req.headers.authorization;
-    if (Header) {
-        req.user = { id: 123 }; 
-        next();
-    } else {
-        res.status(401).json({ message: 'Missing token' });
-    }
-};
 
 function updatebyID(req, res, next) {
     const id = req.params.id;
     const fact = req.body;
-    const userId = req.user.id;
+    const userId = req.user;
 
     const sql = `SELECT * FROM facts WHERE id=$1;`;
     const values = [id];
