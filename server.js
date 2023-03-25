@@ -23,7 +23,7 @@ const server = express();
 server.use(express.json());
 
 // middleware
-server.use(cors({origin:process.env.FRONTEND_URL,credentials:true}))
+server.use(cors({origin:process.env.FRONTEND_URL, credentials:true}))
 server.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -61,6 +61,6 @@ client.connect()
 .then(()=>{
     server.listen(PORT,() => {
         console.log(`start server in ${PORT}`)}); 
-    });
+});
 
 module.exports = client;
