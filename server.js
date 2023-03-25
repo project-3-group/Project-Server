@@ -59,7 +59,7 @@ server.use(express.json());
 
 
 //http://localhost:3000
-server.use('/',apiRoute)
+server.use('/allcountry',apiRoute)
 server.use("/auth", authRoute);
 server.use("/users", userRoute);
 server.post('/addFact',localGuard, crudRoute);
