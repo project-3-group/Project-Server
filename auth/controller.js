@@ -3,7 +3,7 @@ const localAuthMiddleware = require("./middleware/localAuthMiddleware");
 
 const route = express.Router();
 
-route.get("/login", localAuthMiddleware);
+route.post("/login", localAuthMiddleware);
 
 route.get("/logout", function (req, res, next) {
   req.logOut((err) => {

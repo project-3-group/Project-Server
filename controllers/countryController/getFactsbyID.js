@@ -1,11 +1,11 @@
 `use strict`
 
 const express = require("express")
-const route = express.Router();
-const pg = require('pg');
-const client=require('../db/dbConfig');
-route.get('/getFactsbyID/:id', getFactsHandler);
+const client=require('../../db/dbConfig');
 
+const route = express.Router();
+
+route.get('/getFactsbyID/:id', getFactsHandler);
 
 function getFactsHandler(req, res) {
     const id = req.params.id;
@@ -24,4 +24,5 @@ function getFactsHandler(req, res) {
         res.send('error')
     })
 }
+
 module.exports = route;

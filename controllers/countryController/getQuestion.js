@@ -1,12 +1,11 @@
 `use strict `
 
 const express = require("express")
-const route = express.Router();
-const pg = require('pg');
-const client=require('../db/dbConfig');
-route.use(express.json());
-route.get('/getQuestion', getQuestionHandler);
+const client=require('../../db/dbConfig');
 
+const route = express.Router();
+
+route.get('/getQuestion', getQuestionHandler);
 
 function getQuestionHandler(req, res) {
 

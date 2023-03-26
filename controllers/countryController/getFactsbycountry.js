@@ -2,8 +2,8 @@
 
 const express = require("express")
 const route = express.Router();
-const pg = require('pg');
-const client=require('../db/dbConfig');
+const client=require('../../db/dbConfig');
+
 route.get('/getFactsbyCountry/:country', getFactsHandler);
 
 
