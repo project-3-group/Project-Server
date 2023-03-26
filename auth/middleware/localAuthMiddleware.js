@@ -5,8 +5,8 @@ const localAuthMiddleware = function (req, res, next) {
     if (err) {
       return next(err);
     }
-    if (!user) {
-      return res.json(info);
+    if (info) {
+      return res.status(400).json(info);
     }
     req.logIn(user, function (err) {
       if (err) {

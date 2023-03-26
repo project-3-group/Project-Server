@@ -5,8 +5,6 @@ const { localGuard } = require("../auth");
 
 const route = express.Router();
 
-route.get('/',(req,res) => {
-  res.send('hello from the user get route')});
 route.post("/signup", async (req, res, next) => {
     try {
         const user = req.body;
@@ -32,7 +30,7 @@ route.put("/user", localGuard, async (req, res, next) => {
   }
 });
 
-// error
+// error handler
 function handleValidationError(err, req, res) {
     if (err instanceof ValidationError) {
         return res.status(400).json(err);
