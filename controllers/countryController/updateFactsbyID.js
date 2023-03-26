@@ -1,11 +1,10 @@
 `use strict `
 
 const express = require('express');
-const route = express();
-const pg = require('pg');
-const client = require('../db/dbConfig');
-route.use(express.json());
+const client = require('../../db/dbConfig');
 const {localGuard} = require('../../auth');
+
+const route = express();
 
 route.put('/getFactsbyID/:id', localGuard, updatebyID);
 
@@ -13,7 +12,7 @@ route.put('/getFactsbyID/:id', localGuard, updatebyID);
 function updatebyID(req, res, next) {
     const id = req.params.id;
     const fact = req.body;
-    const userId = req.user;
+    const userId = req.user.id;
 
     const sql = `SELECT * FROM facts WHERE id=$1;`;
     const values = [id];

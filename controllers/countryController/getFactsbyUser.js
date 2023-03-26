@@ -1,9 +1,10 @@
 `use strict`
 
 const express = require("express")
+const client=require('../../db/dbConfig');
+
 const route = express.Router();
-const pg = require('pg');
-const client=require('../db/dbConfig');
+
 route.get('/getFactsbyUser/:author', getFactsHandler);
 
 
