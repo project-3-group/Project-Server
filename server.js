@@ -11,7 +11,7 @@ const userRoute = require("./controllers/userControllers");
 const apiRoute = require('./controllers/api/apiGet')
 
 const crudRoute =require ('./controllers/countryController/countryController')
-const server = express();
+
 
 
 
