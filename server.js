@@ -11,7 +11,6 @@ const { myPassport, authRoute ,localGuard} = require("./auth");
 const userRoute = require("./controllers/userControllers");
 const apiRoute = require('./controllers/api/apiGet')
 const crudRoute =require ('./controllers/countryController/countryController');
-
 const getFactsbyCountry = require('./controllers/countryController/getFactsbycountry');
 const getFactsbyUser = require('./controllers/countryController/getFactsbyUser');
 const getFactsbyID = require('./controllers/countryController/getFactsbyID');
