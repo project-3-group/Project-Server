@@ -21,22 +21,21 @@ function addFact(req, res) {
         .then(() => {
             res.send('your data was added');
         }).catch((err) => {
-            errorHandler(err, req, res);
-
+            res.status(500).send(err)
         })
 }
 
 function deleteFact(req, res) {
 
     const id = req.params.id;
-    const sql = `DELETE FROM facts WHERE id=${id} AND users=${req.user.id}`;
+    const sql = `DELETE FROM facts WHERE id=${id} AND author=${req.user.id}`;
     client.query(sql)
         .then((data) => {
             res.status(204).json({});
             
         })
         .catch((err) => {
-            errorHandler(err, req, res);
+            res.status(500).send(err)
         })}
 
 module.exports = crudRoute;

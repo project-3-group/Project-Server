@@ -12,7 +12,7 @@ route.put('/getFactsbyID/:id', localGuard, updatebyID);
 function updatebyID(req, res, next) {
     const id = req.params.id;
     const fact = req.body;
-    const userId = req.user;
+    const userId = req.user.id;
 
     const sql = `SELECT * FROM facts WHERE id=$1;`;
     const values = [id];

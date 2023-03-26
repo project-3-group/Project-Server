@@ -40,8 +40,7 @@ server.use(express.json());
 server.use('/allcountry',apiRoute)
 server.use("/auth", authRoute);
 server.use("/users", userRoute);
-server.post('/addFact',localGuard, crudRoute);
-server.delete('/deleteFact/:id',localGuard, crudRoute);
+server.use('/', crudRoute);
 
 server.use('/', getFactsbyCountry);
 server.use('/', getFactsbyUser);
