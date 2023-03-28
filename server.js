@@ -47,11 +47,14 @@ server.use('/', getFactsbyID);
 server.use('/', getQuestion);
 server.use('/',updateFactsbyID);
 
-
+// error handling
+server.use((req, res) => {
+  res.status(404).send({ message: "route not found" })}
+);
 
 server.use((err, req, res, next) => {
   console.log(err);
-  res.status(500).send("server error");
+  res.status(500).send({message: 'server error'});
 });
 
 const PORT = process.env.PORT || 3000;

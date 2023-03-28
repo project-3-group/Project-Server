@@ -8,12 +8,11 @@ const route = express.Router();
 route.post("/signup", async (req, res, next) => {
     try {
         const user = req.body;
-        await addUser(user);
-        res.status(201).send();
+        const newUser = await addUser(user);
+        res.status(201).send(newUser);
     } 
     catch (err) {
         handleValidationError(err, req, res);
-        next(err);
     }
 });
 
@@ -31,19 +30,19 @@ route.put("/user", localGuard, async (req, res, next) => {
 });
 
 // error handler
-function handleValidationError(err, req, res) {
+function handleValidationError(err, req, res,next) {
     if (err instanceof ValidationError) {
         return res.status(400).json(err);
     }
     if (err.code && (err.code.slice(0, 2) === "23" || err.code.slice(0, 2) === "22")) {
-        console.error(err.message);
         res.status(400);
         return res.json({
             status: 400,
             responseText: "Bad Request",
-            message: err.message,
+            message: err.detail || err.message,
         });
     }
+    next(err);
 }
 
 module.exports = route;
