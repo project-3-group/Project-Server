@@ -34,7 +34,7 @@ apiRoute.get('/', (req, res) => {
 apiRoute.get('/:title', (req, res) => {
     try {
         const title = req.params.title;
-        const ApiURL = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&titles=${title}&exintro&explaintext&exsentences=10`;
+        const ApiURL = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&titles=${title}&exintro&explaintext&exsentences=5`;
         const oneCountryAPI = `https://restcountries.com/v3.1/name/${title}`
         axios.get(ApiURL)
             .then((result) => {
