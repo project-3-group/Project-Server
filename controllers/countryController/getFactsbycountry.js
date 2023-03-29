@@ -10,18 +10,18 @@ route.get('/getFactsbyCountry/:country', getFactsHandler);
 function getFactsHandler(req, res) {
     const country = req.params.country;
     console.log(country);
-    const sql =`SELECT * FROM facts WHERE country=$1;`;
+    const sql =`SELECT facts.id,facts.fact,facts.country,facts.author,users.first_name,users.last_name,users.email,users.highest_score
+    FROM facts
+    LEFT JOIN users ON facts.author = users.id
+    WHERE country = $1;`;
     const values = [country];
-    console.log(sql);
 
     client.query(sql,values)
     .then((result)=>{
-        // res.send(result.rows)
         res.send(result.rows);
-
     })
     .catch((error) => {
-        res.send('error')
+        res.status(500).send(error)
     })
 }
 module.exports = route;
