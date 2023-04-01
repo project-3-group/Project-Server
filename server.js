@@ -30,7 +30,7 @@ server.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      origin: process.env.FRONTEND_URL,
+      domain: process.env.FRONTEND_URL,
       credentials: true,
     },
   })
