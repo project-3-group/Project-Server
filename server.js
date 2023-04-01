@@ -29,7 +29,7 @@ server.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      sameSite: false,
+      sameSite: 'none',
     },
   })
 );
