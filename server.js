@@ -29,9 +29,9 @@ server.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      credentials: true,
       sameSite: "none",
       secure: true,
+      domain: process.env.FRONTEND_URL,
     },
   })
 );
