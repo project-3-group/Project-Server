@@ -29,7 +29,7 @@ server.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      path:process.env.FRONTEND_URL,
+      domain: process.env.FRONTEND_URL,
     },
   })
 );
