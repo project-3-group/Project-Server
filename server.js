@@ -31,7 +31,7 @@ server.use(
     cookie: {
       sameSite: "none",
       secure: true,
-      domain: process.env.FRONTEND_URL,
+      domain: process.env.SET_COOKIE_DOMAIN,
     },
   })
 );
