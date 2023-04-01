@@ -30,7 +30,9 @@ server.use(
     saveUninitialized: false,
     cookie: {
       sameSite: 'none',
-      secure: true
+      secure: true,
+      path:process.env.FRONTEND_URL,
+      
     },
   })
 );
