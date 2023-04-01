@@ -29,9 +29,9 @@ server.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-      domain: process.env.FRONTEND_URL,
       credentials: true,
+      sameSite: "none",
+      secure: true,
     },
   })
 );
