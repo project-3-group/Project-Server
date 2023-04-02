@@ -30,9 +30,6 @@ server.use(
     saveUninitialized: true,
     cookie: { 
       maxAge: 1000 * 60 * 60 * 24 * 7 ,
-      sameSite: "none",
-      secure: true,
-      domain: process.env.SET_COOKIE_DOMAIN  
   },
   })
 );
