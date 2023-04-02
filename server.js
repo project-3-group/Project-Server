@@ -26,13 +26,8 @@ server.use(cors({origin:process.env.FRONTEND_URL, credentials:true}))
 server.use(
   session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      sameSite: "none",
-      secure: true,
-      domain: process.env.SET_COOKIE_DOMAIN,
-    },
+    resave: true,
+    saveUninitialized: true
   })
 );
 server.use(myPassport.initialize());
